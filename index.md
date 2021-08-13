@@ -1,5 +1,6 @@
 ## Scan8
 Scan8 is a distributed scanning system for detecting trojans, viruses, malware, and other malicious threats embedded in files. The system will allow one to submit a list of URLs or files and get the scan results in return.  
+
 The project is divided into various modules namely ```Dashboard```, ```Coordinator Node```, ```Worker Node```, and ```Testing```.  
 The ```Dashboard``` provides a responsive web interface for uploading files for new scans and tracking the status of all the submitted scans.  
 The ```Coordinator Node``` listens to updates for new scans, subsequently creating and adding scan jobs to the Redis Queue.  
