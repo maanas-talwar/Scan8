@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+## Scan8
 
-You can use the [editor on GitHub](https://github.com/maanas-talwar/Scan8/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Scan8 is a distributed scanning system for detecting trojans, viruses, malware, and other malicious threats embedded in files. The system will allow one to submit a list of URLs or files and get the scan results in return.  
+The project is divided into various modules namely ```Dashboard```, ```Coordinator Node```, ```Worker Node```, and ```Testing```.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The ```Dashboard``` provides a responsive web interface for uploading files for new scans and tracking the status of all the submitted scans.  
+The ```Coordinator Node``` listens to updates for new scans, subsequently creating and adding scan jobs to the Redis Queue.  
+The ```Worker Node``` listens to updates for new jobs in Redis Queue and executes them.  
 
-### Markdown
+The ```Testing``` module helps in maintaining the application and facilitating the CI/CD process for the same.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Application Architecture
+![Scan8 application architecture](https://user-images.githubusercontent.com/54113320/129327795-bd8da18e-484a-428a-aa90-7cc063e11b7f.png)
 
-```markdown
-Syntax highlighted code block
+### Dependencies
+* Language: ```Python 3.8.10```
+* Database: ```MongoDB```
+* Tools: ```redis-server clamav clamav-daemon```
 
-# Header 1
-## Header 2
-### Header 3
+> Specific dependencies for the ```Dashboard```, ```Coordinator``` and ```Worker``` can be found in the respective directories in ```requirements.txt``` file.
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+### Local Setup Guide
+1. Clone the current repository to your local machine using ```git clone```.
+2. Install the dependencies as specified in ```Dependencies``` section.
+3. Make sure the ```mongod``` and ```clamav-daemon``` services are running in the background.
+4. Check the ```.env``` file to have the appropriate MongoDB and Redis host and port (variables are set to defaults).
+5. Access the terminal and move to the ```Dashboard``` directory.
+6. Run the flask application using ```export FLASK_APP=app.py``` followed by ```flask run```.
+7. Access another terminal and move to the ```Coordinator``` directory.
+8. Run the coordinator node application using ```python3 app.py```.
+9. Access another terminal and move to the ```Worker``` directory.
+10. Run the worker node application using ```python3 app.py```.
+11. Create ```Uploads``` and ```Results``` directories in the project directory.
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+### Usage
+1. After following the ```Local setup guide```, use any web browser to access the IP address mentioned in the terminal after running ```flask run``` (by default it is ```http://127.0.0.1:5000/```).
+2. Submit new scans using the ```New Scan``` button and track their progress on the dashboard.
+3. The results for the submitted scans can be found in the ```Results``` directory as ```<scan id>_<file_name>.json```.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/maanas-talwar/Scan8/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Testing
+The application comes with a test suite to help users ensure correct installation and help developers verify any updates.
+1. Ensure the Results and Uploads directories are empty.
+2. Ensure the MongoDB collections are empty.
+3. Ensure the scan8 application is up and running.
+4. Access a terminal and move to the ```Testing``` directory.
+5. Run the test suite using ```python3 app.py```.
+7. Run a single scan using the Scan8 dashboard and wait till completion.
+8. Run the test suite again using ```python3 app.py```.
