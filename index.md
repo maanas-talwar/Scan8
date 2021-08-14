@@ -43,6 +43,6 @@ The application comes with a test suite to help users ensure correct installatio
 2. Ensure the MongoDB collections are empty.
 3. Ensure the scan8 application is up and running.
 4. Access a terminal and move to the ```Testing``` directory.
-5. Run the test suite using ```python3 app.py```.
+5. Run the test suite using ```python3 app.py -v```.
 7. Run a single scan using the Scan8 dashboard and wait till completion.
-8. Run the test suite again using ```python3 app.py```.
+8. Run the test suite again using ```python3 app.py -v```.
