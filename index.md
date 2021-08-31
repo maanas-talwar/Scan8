@@ -5,10 +5,10 @@ The ```Coordinator Node``` listens to updates for new scans, subsequently creati
 The ```Worker Node``` listens to updates for new jobs in Redis Queue and executes them.  
 The ```Testing``` module helps in maintaining the application and facilitating the CI/CD process for the same.
 
-### Application Architecture
+## Application Architecture
 ![Scan8 application architecture](https://user-images.githubusercontent.com/54113320/129327795-bd8da18e-484a-428a-aa90-7cc063e11b7f.png)
 
-### Dependencies
+## Dependencies
 * Language: ```Python 3.8.10```
 * Database: ```MongoDB```
 * Tools: ```redis-server clamav clamav-daemon```
@@ -16,7 +16,7 @@ The ```Testing``` module helps in maintaining the application and facilitating t
 > Specific dependencies for the ```Dashboard```, ```Coordinator``` and ```Worker``` can be found in the respective directories in ```requirements.txt``` file.
 
 
-### Local Setup Guide
+## Local Setup Guide
 1. Clone the current repository to your local machine using ```git clone```.
 2. Install the dependencies as specified in ```Dependencies``` section.
 3. Make sure the ```mongod``` and ```clamav-daemon``` services are running in the background.
@@ -30,12 +30,12 @@ The ```Testing``` module helps in maintaining the application and facilitating t
 11. Create ```Uploads``` and ```Results``` directories in the project directory.
 
 
-### Usage
+## Usage
 1. After following the ```Local setup guide```, use any web browser to access the IP address mentioned in the terminal after running ```flask run``` (by default it is ```http://127.0.0.1:5000/```).
 2. Submit new scans using the ```New Scan``` button and track their progress on the dashboard.
 3. The results for the submitted scans can be found in the ```Results``` directory as ```<scan id>_<file_name>.json```.
 
-### Testing
+## Testing
 The application comes with a test suite to help users ensure correct installation and help developers verify any updates.
 1. Ensure the Results and Uploads directories are empty.
 2. Ensure the MongoDB collections are empty.
@@ -45,7 +45,7 @@ The application comes with a test suite to help users ensure correct installatio
 7. Run a single scan using the Scan8 dashboard and wait till completion.
 8. Run the test suite again using ```python3 app.py -v```.
 
-### Demo videos
+## Demo videos
 * [Introduction](https://drive.google.com/file/d/16oXRxPhDIK1QnPnjoJig_SXpZj8Lj-mq/view?usp=sharing)
 * [Application Demo](https://drive.google.com/file/d/1TblQdpIAS4VybZzgb2ORfmJiXs_McVrO/view?usp=sharing)
 * [Testing Demo](https://drive.google.com/file/d/1CTvLrD_fSdq6xxXabgkLGOPs3jDLwPrT/view?usp=sharing)
